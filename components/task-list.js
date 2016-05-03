@@ -1,7 +1,7 @@
 'use strict';
 
 const {link, pipe} = require('xain');
-const dom = require('xow/jsx');
+const {dom, children} = require('xow');
 
 const App = require('./base');
 const Task = require('./task');
@@ -19,7 +19,7 @@ module.exports = class TaskList extends App {
             <div>
                 <h3>Task count is: {taskCount}</h3>
                 <ul style={{'padding': 0}}>
-                    {tasks.map((task, i) => (new Task({task, i})).$)}
+                    {children(tasks.map((task, i) => (new Task({task, i})).$))}
                 </ul>
             </div>
         );
