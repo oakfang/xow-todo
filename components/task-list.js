@@ -1,6 +1,7 @@
 'use strict';
 
 const {link, pipe} = require('xain');
+const dom = require('xow/jsx');
 
 const App = require('./base');
 const Task = require('./task');
@@ -14,9 +15,13 @@ module.exports = class TaskList extends App {
     }
     render() {
         const {tasks, taskCount} = this.props;
-        return ['div', {}, [
-            ['h3', {}, `Task count is: ${taskCount}`],
-            ['ul', {style: {'padding': 0}}, tasks.map((task, i) => (new Task({task, i})).$)]
-        ]];
+        return (
+            <div>
+                <h3>Task count is: {taskCount}</h3>
+                <ul style={{'padding': 0}}>
+                    {tasks.map((task, i) => (new Task({task, i})).$)}
+                </ul>
+            </div>
+        );
     }
 }

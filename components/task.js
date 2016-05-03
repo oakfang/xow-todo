@@ -1,29 +1,25 @@
 'use strict';
 
-const {YES, NO} = require('xow');
+const {YES, NO, dom} = require('xow');
 
 const App = require('./base');
 
 module.exports = class Task extends App {
-    render() {
+    toggleTask() {
         const {task, i} = this.props;
-        return ['li', {
-            key: task.id,
-            style: {'list-style-type': 'none'},
-            onclick() {
-                this.state.tasks = [...this.state.tasks.slice(0, i), 
-                                    Object.assign({}, task, {enabled: !task.enabled}),
-                                    ...this.state.tasks.slice(i + 1)];
-            }
-        }, [
-            ['input', {
-                type: 'checkbox',
-                checked: task.enabled ? NO : YES,
-                style: {'display': 'inline-block', 'margin-right': '25px', 'vertical-align': 'bottom'}
-            }],
-            ['span', {
-                style: {'text-decoration': task.enabled ? 'initial' : 'line-through'}
-            }, task.text]
-        ]]
+        this.state.tasks = [...this.state.tasks.slice(0, i), 
+                            Object.assign({}, task, {enabled: !task.enabled}),
+                            ...this.state.tasks.slice(i + 1)];
+    }
+    render() {
+        const {task} = this.props;
+        return (
+            <li key={task.id} style={{'list-style-type': 'none'}} onclick={() => this.toggleTask()}>
+                <input type="checkbox" 
+                       checked={task.enabled ? NO : YES} 
+                       style={{'display': 'inline-block', 'margin-right': '25px', 'vertical-align': 'bottom'}} />
+                <span style={{'text-decoration': task.enabled ? 'initial' : 'line-through'}}>{task.text}</span>
+            </li>
+        );
     }
 }

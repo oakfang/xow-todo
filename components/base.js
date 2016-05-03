@@ -5,7 +5,7 @@ const {observable, observe} = require('xain');
 
 let storedState = localStorage.getItem('state');
 
-const state = observable(storedState ? JSON.parse(storedState) : {
+const state = window.state = observable(storedState ? JSON.parse(storedState) : {
     currentInput: '',
     tasks: []
 });
