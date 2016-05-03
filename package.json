@@ -1,0 +1,19 @@
+{
+  "name": "xain-el",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack && python -m SimpleHTTPServer 3000"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xain": "^1.0.0",
+    "xow": "^1.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.0"
+  }
+}
