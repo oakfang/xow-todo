@@ -1,6 +1,6 @@
 'use strict';
 
-const dom = require('xow/jsx');
+const {dom, children} = require('xow');
 const App = require('./base');
 
 module.exports = class Main extends App {
@@ -9,8 +9,7 @@ module.exports = class Main extends App {
         return (
             <div>
                 <h1>Welcome!</h1>
-                {newTask.$}
-                {list.$}
+                {children(this.props.children)}
             </div>
         );
     }
