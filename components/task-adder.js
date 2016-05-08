@@ -26,16 +26,25 @@ module.exports = class TaskAdder extends App {
     render() {
         const {current, disabledCount} = this.props;
         return (
-            <div>
-                <input value={new String(current)} 
-                       style={{display: 'inline-block'}} 
-                       oninput={(e) => {this.state.currentInput = e.target.value}} />
-                <button style={{display: 'inline-block'}} disabled={current ? NO : YES} onclick={() => this.addTask()}>
-                    Add
-                </button>
-                <button style={{display: 'inline-block'}} disabled={disabledCount ? NO : YES} onclick={() => this.clearTasks()}>
-                    Clear all done
-                </button>
+            <div class="mdl-grid">
+                <form action="#" class="mdl-cell mdl-cell-6-col">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" type="text" id="todo-text"
+                               value={new String(current)}
+                               oninput={(e) => {this.state.currentInput = e.target.value}} />
+                        <label class="mdl-textfield__label" for="todo-text">To do...</label>
+                    </div>
+                </form>
+                <div class="mdl-cell mdl-cell-3-col">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            disabled={current ? NO : YES} onclick={() => this.addTask()}>
+                        Add
+                    </button>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                            disabled={disabledCount ? NO : YES} onclick={() => this.clearTasks()}>
+                        Clear all done
+                    </button>    
+                </div>
             </div>
         );
     }

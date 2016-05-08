@@ -15,10 +15,9 @@ module.exports = class Task extends App {
         const {task} = this.props;
         return (
             <li key={task.id} style={{'list-style-type': 'none'}} onclick={() => this.toggleTask()}>
-                <input type="checkbox" 
-                       checked={task.enabled ? NO : YES} 
-                       style={{'display': 'inline-block', 'margin-right': '25px', 'vertical-align': 'bottom'}} />
-                <span style={{'text-decoration': task.enabled ? 'initial' : 'line-through'}}>{task.text}</span>
+                <input type="checkbox"
+                       checked={task.enabled ? NO : YES} />
+                <span class="task-text" style={{'text-decoration': task.enabled ? 'initial' : 'line-through'}}>{task.text}</span>
             </li>
         );
     }
