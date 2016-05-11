@@ -19,7 +19,9 @@ module.exports = class TaskList extends App {
             <div>
                 <h3>Task count is: {taskCount}</h3>
                 <ul style={{'padding': 0}}>
-                    {children(tasks.map((task, i) => (new Task({task, i}))))}
+                    {children(tasks.map((task, i) => 
+                        <Task task={task} i={i}/>
+                    ))}
                 </ul>
             </div>
         );
