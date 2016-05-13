@@ -14,7 +14,8 @@ module.exports = class TaskList extends App {
         }
     }
     render() {
-        const {tasks, taskCount} = this.props;
+        let {tasks, taskCount, filter} = this.props;
+        if (filter) tasks = tasks.filter(({id}) => id == filter);
         return (
             <div>
                 <h3>Task count is: {taskCount}</h3>

@@ -1,0 +1,160 @@
+input[type=checkbox] {
+  position: relative;
+  top: -0.375rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+  margin-right: 25px;
+  vertical-align: bottom;
+}
+
+input[type=checkbox]:before {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #f2f2f2;
+}
+
+input[type=checkbox][checked]:before {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  height: .5rem;
+  border-color: #3F51B5;
+  border-top-style: none;
+  border-right-style: none;
+}
+
+input[type=checkbox]:after {
+  content: "";
+  position: absolute;
+  top: -0.125rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.task-text {
+  top: 3px;
+  position: relative;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+
+input[type=text] {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 276px;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+
+/* LABEL ======================================= */
+
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+}
+
+
+/* active state */
+
+input[type=text]:focus ~ label,
+input[type=text]:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+}
+
+
+/* BOTTOM BARS ================================= */
+
+.bar {
+  position: relative;
+  display: block;
+}
+
+.bar:before,
+.bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+
+/* active state */
+
+input[type=text]:focus ~ .bar:before,
+input[type=text]:focus ~ .bar:after {
+  width: 50%;
+}
+
+
+/* HIGHLIGHTER ================================== */
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+
+/* active state */
+
+input[type=text]:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+
+/* ANIMATIONS ================ */
+
+
+@keyframes inputHighlighter {
+  from {
+    background: #5264AE;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}

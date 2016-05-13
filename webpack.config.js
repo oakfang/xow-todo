@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    entry: './app.js',
+    entry: './src/app.js',
     module: {
       loaders: [
         {
@@ -19,6 +19,7 @@ module.exports = {
       ]
     },
     output: {
+      path: 'static/',
       filename: 'app.bundle.js'
     },
     target: 'web'

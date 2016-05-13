@@ -4,6 +4,7 @@ const {YES, NO, dom} = require('xow');
 const {link, pipe} = require('xain');
 
 const App = require('./base');
+const TextInput = require('./text-input');
 
 module.exports = class TaskAdder extends App {
     static reaction(state) {
@@ -23,25 +24,23 @@ module.exports = class TaskAdder extends App {
     clearTasks() {
         this.state.tasks = this.state.tasks.filter(({enabled}) => enabled);
     }
+    setCurrentText({target}) {
+        this.state.currentInput = target.value;
+    }
     render() {
         const {current, disabledCount} = this.props;
         return (
             <div class="mdl-grid">
                 <form action="#" class="mdl-cell mdl-cell-6-col">
-                    <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="text" id="todo-text"
-                               value={new String(current)}
-                               oninput={(e) => {this.state.currentInput = e.target.value}} />
-                        <label class="mdl-textfield__label" for="todo-text">To do...</label>
-                    </div>
+                    <TextInput value={current} required={true} onInput={this.setCurrentText} label="To do..." />
                 </form>
                 <div class="mdl-cell mdl-cell-3-col">
                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                            disabled={current ? NO : YES} onclick={() => this.addTask()}>
+                            disabled={current ? NO : YES} onclick={this.addTask}>
                         Add
                     </button>
                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
-                            disabled={disabledCount ? NO : YES} onclick={() => this.clearTasks()}>
+                            disabled={disabledCount ? NO : YES} onclick={this.clearTasks}>
                         Clear all done
                     </button>    
                 </div>
