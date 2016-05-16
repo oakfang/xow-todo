@@ -1,13 +1,19 @@
 'use strict';
 
 const {dom, children} = require('xow');
+const {pipe} = require('xain');
 const {Link} = require('xow-route');
 const App = require('./base');
 
 
 module.exports = class Main extends App {
+    static reaction(state) {
+        return {
+            loading: pipe(state, 'loading')
+        };
+    }
     render() {
-        const { newTask, list } = this.props;
+        const { loading } = this.props;
         return (
             <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
                 <header class="mdl-layout__header">
@@ -25,7 +31,10 @@ module.exports = class Main extends App {
                     <div class="page-content">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset">
-                                {children(this.props.children)}
+                                { loading ?
+                                    <h1>Loading...</h1> :
+                                    children(this.props.children)
+                                }
                             </div>
                         </div>
                     </div>

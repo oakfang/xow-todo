@@ -1,17 +1,26 @@
 'use strict';
 
 const {Component} = require('xow');
-const {observable, observe} = require('xain');
+const {observable, observe, stream} = require('xain');
 
-let storedState = localStorage.getItem('state');
-
-const state = window.state = observable(storedState ? JSON.parse(storedState) : {
+const state = window.state = observable({
     currentInput: '',
-    tasks: []
+    tasks: [],
+    loading: true
 });
 
-observe(state, () => {
-    localStorage.setItem('state', JSON.stringify(state));
-});
+const tasksStream = stream(state).filter(key => key === 'tasks').map((_k, tasks) => tasks);
+
+fetch('/tasks').then(response => response.json()).then(({tasks}) => {
+    state.loading = false;
+    state.tasks = tasks;
+}).then(() => observe(tasksStream, tasks => {
+    state.loading = true;
+    fetch('/tasks', {
+        method: 'PUT', 
+        headers: new Headers({'Content-Type': 'application/json'}),
+        body: JSON.stringify({tasks})
+    }).then(() => state.loading = false);
+}));
 
 module.exports = Component(state);
