@@ -17,7 +17,7 @@
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "xain": "^1.0.4",
-    "xow": "file:///C:\\Users\\alon\\dev\\projects\\xow",
+    "xow": "^1.6.0",
     "xow-route": "^0.1.0"
   },
   "devDependencies": {
