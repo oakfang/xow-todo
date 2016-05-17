@@ -31,9 +31,10 @@ module.exports = class Main extends App {
                     <div class="page-content">
                         <div class="mdl-grid">
                             <div class="mdl-cell mdl-cell--6-col mdl-cell--3-offset">
+                                { children(this.props.children) }
                                 { loading ?
                                     <h1>Loading...</h1> :
-                                    children(this.props.children)
+                                    null
                                 }
                             </div>
                         </div>
